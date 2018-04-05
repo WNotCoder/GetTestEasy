@@ -138,5 +138,3 @@ k = mp.wrtAns(docAns,ans_jQuiz,'简答题',k)
 
 docQues.save(QuesDest)
 docAns.save(AnsDest)
-
-#没了
