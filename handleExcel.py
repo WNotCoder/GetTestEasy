@@ -60,7 +60,3 @@ def standTitle(useSheet,titleNo):
         #删除答案
         cf.setCellValue(useSheet,i,1,cleanAns(cf.getCellValue(useSheet,i,1)))
         return None
-
-
-
-

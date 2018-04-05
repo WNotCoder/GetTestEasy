@@ -64,6 +64,3 @@ def wrtAns(doc, quesAns, quesType,k):
         k += 1
         paraObj2.add_run(str(k) + chr(46) + i + chr(32))
     return k
-
-
-
