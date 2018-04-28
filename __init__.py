@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 
 bankDest = [r'E:\Temp\python\变二.xlsx',r'E:\Temp\python\变一.xlsx',r'E:\Temp\python\稽查及大户.xlsx']
 #每套题库抽题数量，依次为单选、多选、判断、简答
-bankSelect = [[5,2,3,0],[0,0,0,0],[0,0,0,0]]
+bankSelect = [[0,0,0,0],[10,11,12,0],[0,0,0,0]]
 
 #样式文件地址
 templeDest = r'E:\Temp\python\template.docx'
@@ -83,7 +83,7 @@ def wrtQuizChoice(bank,matrix,docQ,type):
                 mp.wrtChoice(docQ,quizChoice)
                 quizAns.append(cf.getCellValue(useSheet,n,7))
 
-            j += 1
+        j += 1
 
     return quizAns
 
@@ -119,7 +119,7 @@ def wrtOtherQuiz(bank,matrix,docQ,type):
 
                 quizAns.append(cf.getCellValue(useSheet,n,7))
 
-            j += 1
+        j += 1
 
     return quizAns
 

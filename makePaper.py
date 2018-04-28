@@ -14,7 +14,7 @@ def wrtTitle(doc,paperTitle):
 #写题型标题
 def wrtQuesTitle(doc,quesTitle):
     para = doc.add_paragraph(quesTitle)
-    para.style = 'paperStyleTitle'
+    para.style = 'paperStyleItem'
     return None
 
 #写题目
@@ -62,5 +62,6 @@ def wrtAns(doc, quesAns, quesType,k):
     paraObj2.style = 'paperStyleOption'
     for i in quesAns:
         k += 1
+        logging.info(i)
         paraObj2.add_run(str(k) + chr(46) + i + chr(32))
     return k
