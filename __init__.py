@@ -2,8 +2,8 @@ import makePaper as mp
 import commFunc as cf
 import handleExcel as he
 
-import logging,random
-logging.basicConfig(level=logging.INFO)
+import logging,random,os
+logging.basicConfig(level=logging.ERROR)
 
 bankDest = [r'E:\Temp\python\变二.xlsx',r'E:\Temp\python\变一.xlsx',r'E:\Temp\python\稽查及大户.xlsx']
 #每套题库抽题数量，依次为单选、多选、判断、简答
@@ -11,10 +11,6 @@ bankSelect = [[0,0,0,0],[10,11,12,0],[0,0,0,0]]
 
 #样式文件地址
 templeDest = r'E:\Temp\python\template.docx'
-#创建试卷文件
-docQues = cf.creatDoc(templeDest)
-#创建答案文件
-docAns = cf.creatDoc(templeDest)
 #各题分值,分别为单选、多选、判断、简答
 quizMark = [1,1,1,10]
 #题目序号
@@ -23,6 +19,8 @@ quizSeq = 1
 allQuizMatrix = []
 #试题及答案保存地址
 QuesPath = r'E:\Temp\python'
+#出试题份数
+paperNum = 20
 
 def countNum(bank,select):
     p = []
@@ -123,17 +121,46 @@ def wrtOtherQuiz(bank,matrix,docQ,type):
     return quizAns
 
 
-allQuizMatrix = countNum(bankDest,bankSelect)
 
-ans_Single = wrtQuizChoice(bankDest,allQuizMatrix,docQues,0)
-ans_Multi = wrtQuizChoice(bankDest,allQuizMatrix,docQues,1)
-ans_jChoice = wrtOtherQuiz(bankDest,allQuizMatrix,docQues,2)
-ans_jQuiz = wrtOtherQuiz(bankDest,allQuizMatrix,docQues,3)
+def finalStep(num,templePath):
 
-k = mp.wrtAns(docAns,ans_Single,'单选题',0)
-k = mp.wrtAns(docAns,ans_Multi,'多选题',k)
-k = mp.wrtAns(docAns,ans_jChoice,'判断题',k)
-k = mp.wrtAns(docAns,ans_jQuiz,'简答题',k)
+    for paperCount in range(1,num+1):
 
-docQues.save(QuesDest)
-docAns.save(AnsDest)
+        # 创建试卷文件
+        docQues = cf.creatDoc(templePath)
+        # 创建答案文件
+        docAns = cf.creatDoc(templePath)
+
+        title = '2018年春查安规考试配电第' + str(paperCount) + '套试题'
+
+        mp.wrtTitle(docQues,title)
+        mp.wrtTitle(docAns,title)
+
+        allQuizMatrix = countNum(bankDest,bankSelect)
+
+        ans_Single = wrtQuizChoice(bankDest,allQuizMatrix,docQues,0)
+        ans_Multi = wrtQuizChoice(bankDest,allQuizMatrix,docQues,1)
+        ans_jChoice = wrtOtherQuiz(bankDest,allQuizMatrix,docQues,2)
+        ans_jQuiz = wrtOtherQuiz(bankDest,allQuizMatrix,docQues,3)
+
+        k = mp.wrtAns(docAns,ans_Single,'单选题',0)
+        k = mp.wrtAns(docAns,ans_Multi,'多选题',k)
+        k = mp.wrtAns(docAns,ans_jChoice,'判断题',k)
+        k = mp.wrtAns(docAns,ans_jQuiz,'简答题',k)
+
+        Qfilename = '配电安规第' + str(paperCount) + '套试题.docx'
+        Afilename = '配电安规第' + str(paperCount) + '套答案.docx'
+        QuesDest = os.path.join(QuesPath,Qfilename)
+        AnsDest = os.path.join(QuesPath,Afilename)
+
+        docQues.save(QuesDest)
+        docAns.save(AnsDest)
+
+        print('Progressing['+ '*' * paperCount + ' '*(num - paperCount) + ']')
+
+        global quizSeq
+        quizSeq = 1
+
+    return None
+
+finalStep(paperNum,templeDest)

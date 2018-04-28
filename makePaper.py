@@ -1,7 +1,7 @@
 
 import os,docx,openpyxl,random,re
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.ERROR)
 
 import commFunc as cf
 
