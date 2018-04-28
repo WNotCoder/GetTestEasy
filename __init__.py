@@ -22,8 +22,7 @@ quizSeq = 1
 #所有筛选好的试题
 allQuizMatrix = []
 #试题及答案保存地址
-QuesDest = 'E:\Temp\python\试卷.docx'
-AnsDest = 'E:\Temp\python\答案.docx'
+QuesPath = r'E:\Temp\python'
 
 def countNum(bank,select):
     p = []
