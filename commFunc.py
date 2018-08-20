@@ -9,7 +9,7 @@ def creatDoc(templeDest):
 #打开excle文件
 def openQsBank(filename):
     wb = openpyxl.load_workbook(filename)
-    acSheet = wb.get_active_sheet()
+    acSheet = wb.active
     return acSheet
 
 #获取单元格的数值

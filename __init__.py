@@ -5,22 +5,22 @@ import handleExcel as he
 import logging,random,os
 logging.basicConfig(level=logging.ERROR)
 
-bankDest = [r'E:\Temp\python\变二.xlsx',r'E:\Temp\python\变一.xlsx',r'E:\Temp\python\稽查及大户.xlsx']
+bankDest = [r'D:\文档\安规考试\附件4：秋查安规考试交通题库.xlsx',r'D:\文档\安规考试\附件5：秋查安规考试附加题库.xlsx']
 #每套题库抽题数量，依次为单选、多选、判断、简答
-bankSelect = [[0,0,0,0],[10,11,12,0],[0,0,0,0]]
+bankSelect = [[30,15,40,0],[0,0,0,0]]
 
 #样式文件地址
-templeDest = r'E:\Temp\python\template.docx'
+templeDest = r'D:\文档\安规考试\template.docx'
 #各题分值,分别为单选、多选、判断、简答
-quizMark = [1,1,1,10]
+quizMark = [1,2,1,0]
 #题目序号
 quizSeq = 1
 #所有筛选好的试题
 allQuizMatrix = []
 #试题及答案保存地址
-QuesPath = r'E:\Temp\python'
+QuesPath = r'D:\文档\安规考试\交规'
 #出试题份数
-paperNum = 20
+paperNum = 2
 
 def countNum(bank,select):
     p = []
@@ -93,7 +93,7 @@ def wrtOtherQuiz(bank,matrix,docQ,type):
         total += bankSelect[i][type]
 
     if type == 2:
-        quesTitle = '三、判断题（共' + str(total) + '道题，每题' + str(quizMark[2]) + '分）'
+        quesTitle = '三、判断题（共' + str(total) + '道题，每题' + str(quizMark[2]) + '分，正确涂A，错误涂B）'
     elif type == 3:
         if total != 0:
             quesTitle = '四、简答题（共' + str(total) + '道题，每题' + str(quizMark[3]) + '分）'
@@ -131,7 +131,7 @@ def finalStep(num,templePath):
         # 创建答案文件
         docAns = cf.creatDoc(templePath)
 
-        title = '2018年春查安规考试配电第' + str(paperCount) + '套试题'
+        title = '2018年秋查规程考试交规第' + str(paperCount) + '套试题'
 
         mp.wrtTitle(docQues,title)
         mp.wrtTitle(docAns,title)
@@ -148,8 +148,8 @@ def finalStep(num,templePath):
         k = mp.wrtAns(docAns,ans_jChoice,'判断题',k)
         k = mp.wrtAns(docAns,ans_jQuiz,'简答题',k)
 
-        Qfilename = '配电安规第' + str(paperCount) + '套试题.docx'
-        Afilename = '配电安规第' + str(paperCount) + '套答案.docx'
+        Qfilename = '交规第' + str(paperCount) + '套试题.docx'
+        Afilename = '交规第' + str(paperCount) + '套答案.docx'
         QuesDest = os.path.join(QuesPath,Qfilename)
         AnsDest = os.path.join(QuesPath,Afilename)
 
