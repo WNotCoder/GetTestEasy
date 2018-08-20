@@ -57,8 +57,10 @@ templeDest = r'E:\Temp\python\template.docx'
 quizMark = [1,1,1,10]
 
 #试题及答案保存地址
-QuesDest = 'E:\试卷.docx'
-AnsDest = 'E:\答案.docx'
+QuesPath = r'E:\Temp\python'
+
+#出试题份数
+paperNum = 20
 ```
 
 ## 已知问题
