@@ -5,9 +5,9 @@ import handleExcel as he
 import logging,random,os
 logging.basicConfig(level=logging.ERROR)
 
-bankDest = [r'D:\文档\安规考试\附件4：秋查安规考试交通题库.xlsx',r'D:\文档\安规考试\附件5：秋查安规考试附加题库.xlsx']
+bankDest = [r'D:\文档\安规考试\附件4：秋查安规考试变电题库.xlsx',r'D:\文档\安规考试\附件5：秋查安规考试附加题库.xlsx']
 #每套题库抽题数量，依次为单选、多选、判断、简答
-bankSelect = [[30,15,40,0],[0,0,0,0]]
+bankSelect = [[29,15,39,0],[1,0,1,0]]
 
 #样式文件地址
 templeDest = r'D:\文档\安规考试\template.docx'
@@ -20,7 +20,7 @@ allQuizMatrix = []
 #试题及答案保存地址
 QuesPath = r'D:\文档\安规考试\交规'
 #出试题份数
-paperNum = 2
+paperNum = 30
 
 def countNum(bank,select):
     p = []
